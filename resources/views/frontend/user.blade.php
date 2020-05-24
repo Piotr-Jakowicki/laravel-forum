@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
-                    <img class="mr-3" src="..\\69045.png" alt="" width="48" height="48">
+                    <img class="mr-3" src="{{asset('images\69045.png')}}" alt="" width="48" height="48">
                 <div class="lh-100">
                 <h6 class="mb-0 lh-100">Post</h6>
                 <small>User nickname</small>
@@ -25,7 +25,7 @@
             <div class="row">
                 <?php for($i=0;$i<6;$i++): ?>
                     <div class="col-md-2 mr-4 mb-4">
-                        <img class="img-fluid img-thumbnail" src="..\user.png" alt="">
+                        <img class="img-fluid img-thumbnail" src="{{asset('images\user.png')}}" alt="">
                     </div>
                 <?php endfor; ?>
             </div>
@@ -59,7 +59,7 @@
 
             <div class="media mb-5">
                 <div class="media-body">
-                    <h5 class="mt-0"> <a href="..\frontend\user.blade.php">Post title</a> </h5>
+                    <h5 class="mt-0"> <a href="{{route('post')}}">Post title</a> </h5>
                     <p>11/12/99 12:50</p>
                     <br>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda laborum reiciendis nam officia dolorem perferendis ipsum quasi doloremque distinctio obcaecati nemo ullam consequatur, atque excepturi omnis, voluptatibus aliquam aspernatur eligendi quod id asperiores inventore incidunt. Velit temporibus expedita voluptates excepturi, iusto voluptatum facere aspernatur quibusdam molestiae enim eligendi quisquam vero voluptas cum veritatis doloribus quos maiores pariatur fugiat ipsum tenetur ea. Tempora quos accusamus illum ex! Nostrum blanditiis minus reprehenderit autem exercitationem repellat a, similique ipsa est, debitis perferendis iure minima nemo esse iste doloremque quae! In ipsum assumenda quidem, quod veritatis placeat voluptas, qui molestiae, ad non eaque vero!

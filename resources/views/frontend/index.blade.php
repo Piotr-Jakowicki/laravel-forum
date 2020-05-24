@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
-                <img class="mr-3" src="..\\69045.png" alt="" width="48" height="48">
+                <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="48" height="48">
                 <div class="lh-100">
                     <h6 class="mb-0 lh-100">Forum</h6>
                     <small>For developers</small>
@@ -30,7 +30,7 @@
                         <tr>
                             <th scope="row">
                                 <div class="media text-muted pt-3">
-                                <img class="mr-3" src="..\\69045.png" alt="" width="20" height="20">
+                                <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="20" height="20">
                                 <p class="media-body pb-3 mb-0 small lh-125">
                                     <a href="{{route('categories')}}">Link to category</a>
                                     <br>

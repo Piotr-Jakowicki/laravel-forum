@@ -12,7 +12,7 @@ class FrontendController extends Controller
     }
 
     public function categories(){
-        //
+        return view('frontend.categories');
     }
 
     public function index(){
@@ -20,14 +20,14 @@ class FrontendController extends Controller
     }
 
     public function newPost(){
-        //
+        return view('frontend.newPost');
     }
 
     public function post(){
-        //
+        return view('frontend.post');
     }
 
     public function user(){
-        //
+        return view('frontend.user');
     }
 }

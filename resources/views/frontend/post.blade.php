@@ -15,11 +15,11 @@
                 </div>
             </div>
             <h1 class="mt-4">Post Title</h1>
-            <p class="lead">by<a href="#">User</a></p>
+            <p class="lead">by <a href="{{route('user')}}">User</a></p>
             <hr>
             <p>Posted on January 1, 2019 at 12:00 PM</p>
             <hr>
-            <img class="img-fluid rounded w-100" src="..\post-pic2.jpg" alt="">
+            <img class="img-fluid rounded w-100" src="{{asset('images\post-pic2.jpg')}}" alt="">
             <hr>
 
             <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, vero, obcaecati, aut, error quam sapiente nemo saepe quibusdam sit excepturi nam quia corporis eligendi eos magni recusandae laborum minus inventore?</p>
@@ -92,7 +92,7 @@
               <div class="media mb-2">
                 <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                 <div class="media-body">
-                    <h5 class="mt-0"> <a href="..\frontend\user.blade.php">Commenter Name</a> </h5>
+                    <h5 class="mt-0"> <a href="{{route('user')}}">Commenter Name</a> </h5>
                     <p>11/12/99 12:50</p>
                     <br>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda laborum reiciendis nam officia dolorem perferendis ipsum quasi doloremque distinctio obcaecati nemo ullam consequatur, atque excepturi omnis, voluptatibus aliquam aspernatur eligendi quod id asperiores inventore incidunt. Velit temporibus expedita voluptates excepturi, iusto voluptatum facere aspernatur quibusdam molestiae enim eligendi quisquam vero voluptas cum veritatis doloribus quos maiores pariatur fugiat ipsum tenetur ea. Tempora quos accusamus illum ex! Nostrum blanditiis minus reprehenderit autem exercitationem repellat a, similique ipsa est, debitis perferendis iure minima nemo esse iste doloremque quae! In ipsum assumenda quidem, quod veritatis placeat voluptas, qui molestiae, ad non eaque vero!

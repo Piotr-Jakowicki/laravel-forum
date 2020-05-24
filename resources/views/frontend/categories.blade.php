@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
-            <img class="mr-3" src="..\\69045.png" alt="" width="48" height="48">
+            <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="48" height="48">
             <div class="lh-100">
                 <h6 class="mb-0 lh-100">Category</h6>
                 <small>PHP</small>
@@ -42,9 +42,9 @@
                 <tr>
                   <th scope="row">
                     <div class="media text-muted pt-3">
-                      <img class="mr-3" src="..\\user.png" alt="" width="40" height="40">
+                      <img class="mr-3" src="{{asset('images/user.png')}}" alt="" width="40" height="40">
                       <p class="media-body pb-3 mb-0 small lh-125">
-                        <a href="../frontend/post.blade.php">Link to post</a>
+                        <a href="{{route('post')}}">Link to post</a>
                       </p>
                     </div>
                   </th>
@@ -52,15 +52,15 @@
                   <th><p class="pb-3 mb-0 small lh-125">14242</p></th>
                   <th><p class="pb-3 mb-0 small lh-125">11/12/99 12:32</p></th>
                   <th>
-                    <a href=""><img src="..\\delete3.png" alt="" width="45" height="45"></a>
-                    <a href=""><img src="..\\delete2.png" alt="" width="45" height="45"></a>
+                    <a href=""><img src="{{asset('images/delete2.png')}}" alt="" width="45" height="45"></a>
+                    <a href=""><img src="{{asset('images/delete3.png')}}" alt="" width="45" height="45"></a>
                   </th>
                 </tr>
               </tbody>
             <?php endfor; ?>
             </table>
-            <img src="..\plus.png" alt="" height="20" width="20">
-            <a href="..\frontend\newPost.blade.php">Add post</a>
+            <img src="{{asset('images/plus.png')}}" alt="" height="20" width="20">
+            <a href="{{route('newPost')}}">Add post</a>
             <div class="d-flex justify-content-center">
               <nav aria-label="Page navigation example">
                 <ul class="pagination">
