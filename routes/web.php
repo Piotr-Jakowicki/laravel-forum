@@ -27,4 +27,4 @@ Route::get('/user','FrontendController@user')->name('user');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');

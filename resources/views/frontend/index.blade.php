@@ -21,39 +21,31 @@
                 <thead>
                     <tr>
                         <th scope="col" style="min-width:400px"><h6 class="text-center">Categories</h6></th>
-                        <th scope="col"><h6 class="text-center">Threats</h6></th>
                         <th scope="col"><h6 class="text-center">Posts</h6></th>
+                        <th scope="col"><h6 class="text-center">Lates post</h6></th>
                     </tr>
                 </thead>
-                <?php for($i=0;$i<8;$i++): ?>
+                @foreach($categories as $category)
                     <tbody>
                         <tr>
                             <th scope="row">
                                 <div class="media text-muted pt-3">
                                 <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="20" height="20">
                                 <p class="media-body pb-3 mb-0 small lh-125">
-                                    <a href="{{route('categories')}}">Link to category</a>
+                                    <a href="{{route('categories')}}">{{$category->name}}</a>
                                     <br>
-                                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+                                    {{$category->description}}
                                 </p>
                                 </div>
                             </th>
-                            <th><p class="pb-3 mb-0 small lh-125">142</p></th>
-                            <th><p class="pb-3 mb-0 small lh-125">142</p></th>
+                            <th><p class="pb-3 mb-0 small lh-125">{{$category->posts->count()}}</p></th>
+                            <th><p class="pb-3 mb-0 small lh-125"> <a href="{{route('post')}}">{{$category->posts->first()->title}}</a>  <br> {{$category->posts->first()->created_at}}</p></th>
                         </tr>
                     </tbody>
-                <?php endfor; ?>
+                @endforeach
                 </table>
                 <div class="d-flex justify-content-center">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                        </ul>
-                    </nav>
+                    {{$categories->links()}}
                 </div>
             </div>
         </div>
@@ -64,11 +56,11 @@
                 </h5>
                 <div class="card-body">
                     <ul>
-                        <?php for($i=0;$i<10;$i++): ?>
+                        @foreach($posts['popular'] as $post)
                         <li>
-                            <a href="{{route('post')}}" class="card-link ">Card link</a>
+                            <a href="{{route('post')}}" class="card-link ">{{$post->title}}</a>
                         </li>
-                        <?php endfor; ?>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -79,11 +71,11 @@
                     </h5>
                     <div class="card-body">
                     <ul>
-                        <?php for($i=0;$i<10;$i++): ?>
+                        @foreach($posts['newest'] as $post)
                             <li>
-                                <a href="{{route('post')}}" class="card-link">Card link</a>
+                                <a href="{{route('post')}}" class="card-link">{{$post->title}}</a>
                             </li>
-                        <?php endfor; ?>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -94,15 +86,16 @@
                     </h5>
                     <div class="card-body">
                     <ul>
-                        <?php for($i=0;$i<3;$i++): ?>
+                        @foreach($posts['random'] as $post)
                             <li>
-                                <a href="{{route('post')}}" class="card-link">Card link</a>
+                                <a href="{{route('post')}}" class="card-link">{{$post->title}}</a>
                             </li>
-                        <?php endfor; ?>
+                        @endforeach
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

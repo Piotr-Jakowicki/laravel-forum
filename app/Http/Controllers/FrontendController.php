@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Forum\Gateways\FrontendGateway;
+use App\Forum\Interfaces\FrontendRepositoryInterface;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
-    public function __construct()
+    public function __construct(FrontendRepositoryInterface $fR, FrontendGateway $fG)
     {
-        
+        $this->fR = $fR;
+        $this->fG = $fG;
     }
 
     public function categories(){
@@ -16,7 +19,10 @@ class FrontendController extends Controller
     }
 
     public function index(){
-        return view('frontend.index');
+        $categories  = $this->fR->getCategories();
+        $posts = $this->fR->getPostsForFrontPage();
+
+        return view('frontend.index',compact('categories','posts'));
     }
 
     public function newPost(){
