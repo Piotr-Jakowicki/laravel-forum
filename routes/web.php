@@ -19,8 +19,8 @@ Route::get('/', function () {
 
 Route::get('/','FrontendController@index')->name('home');
 Route::get('/dashboard','FrontendController@dashboard')->name('dashboard');
-Route::get('/categories','FrontendController@categories')->name('categories');
-Route::get('/post','FrontendController@post')->name('post');
+Route::get('/categories/{id?}','FrontendController@categories')->name('categories');
+Route::get('/post/{id?}','FrontendController@post')->name('post');
 Route::get('/newPost','FrontendController@newPost')->name('newPost');
 Route::get('/user','FrontendController@user')->name('user');
 

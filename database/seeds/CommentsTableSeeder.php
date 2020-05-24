@@ -13,7 +13,7 @@ class CommentsTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pl_PL');
 
-        for($i=0;$i<50;$i++){
+        for($i=0;$i<150;$i++){
             DB::table('comments')->insert([
                 'content'=>$faker->text(100),
                 'commentable_type'=>$faker->randomElement(['App\Post']),

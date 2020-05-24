@@ -9,6 +9,6 @@ class Category extends Model
     public $timestamp = false;
 
     public function posts(){
-        return $this->hasMany('App\Post','category_id');
+        return $this->hasMany('App\Post','category_id')->orderBy('created_at','desc');
     }
 }

@@ -32,14 +32,21 @@
                                 <div class="media text-muted pt-3">
                                 <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="20" height="20">
                                 <p class="media-body pb-3 mb-0 small lh-125">
-                                    <a href="{{route('categories')}}">{{$category->name}}</a>
+                                    <a href="{{route('categories',['id'=>$category->id])}}">{{$category->name}}</a>
                                     <br>
                                     {{$category->description}}
                                 </p>
                                 </div>
                             </th>
                             <th><p class="pb-3 mb-0 small lh-125">{{$category->posts->count()}}</p></th>
-                            <th><p class="pb-3 mb-0 small lh-125"> <a href="{{route('post')}}">{{$category->posts->first()->title}}</a>  <br> {{$category->posts->first()->created_at}}</p></th>
+                            <th>
+                                <p class="pb-3 mb-0 small lh-125">
+                                    <a href="{{route('post',['id'=>$category->posts->first()->id])}}">{{$category->posts->first()->title}}
+                                    </a>
+                                    <br> 
+                                    {{$category->posts->first()->created_at}}
+                                </p>
+                            </th>
                         </tr>
                     </tbody>
                 @endforeach
@@ -58,7 +65,7 @@
                     <ul>
                         @foreach($posts['popular'] as $post)
                         <li>
-                            <a href="{{route('post')}}" class="card-link ">{{$post->title}}</a>
+                            <a href="{{route('post',['id'=>$post->id])}}" class="card-link ">{{$post->title}}</a>
                         </li>
                         @endforeach
                     </ul>
@@ -73,7 +80,7 @@
                     <ul>
                         @foreach($posts['newest'] as $post)
                             <li>
-                                <a href="{{route('post')}}" class="card-link">{{$post->title}}</a>
+                                <a href="{{route('post',['id'=>$post->id])}}" class="card-link">{{$post->title}}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -88,7 +95,7 @@
                     <ul>
                         @foreach($posts['random'] as $post)
                             <li>
-                                <a href="{{route('post')}}" class="card-link">{{$post->title}}</a>
+                                <a href="{{route('post',['id'=>$post->id])}}" class="card-link">{{$post->title}}</a>
                             </li>
                         @endforeach
                     </ul>

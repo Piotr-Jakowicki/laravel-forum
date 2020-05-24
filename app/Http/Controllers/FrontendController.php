@@ -14,8 +14,10 @@ class FrontendController extends Controller
         $this->fG = $fG;
     }
 
-    public function categories(){
-        return view('frontend.categories');
+    public function categories($id){
+        $posts = $this->fR->getPosts($id);
+
+        return view('frontend.categories',['posts'=>$posts]);
     }
 
     public function index(){

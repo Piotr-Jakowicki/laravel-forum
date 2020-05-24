@@ -30,47 +30,39 @@
           <table class="table">
             <thead>
               <tr>
-                <th scope="col"><h6 class="text-center">Threat</h6></th>
-                <th scope="col" style="min-width:100px"><h6 class="text-center">Posts</h6></th>
+                <th scope="col"><h6 class="text-center">Post</h6></th>
+                <th scope="col" style="min-width:100px"><h6 class="text-center">Comments</h6></th>
                 <th scope="col" style="min-width:100px"><h6 class="text-center">Views</h6></th>
                 <th scope="col" style="min-width:100px"><h6 class="text-center">Created at</h6></th>
                 <th scope="col" style="min-width:100px"><h6 class="text-center">Modertor/Owner</h6></th>
               </tr>
             </thead>
-            <?php for($i=0;$i<8;$i++): ?>
+            @foreach($posts as $post)
               <tbody>
                 <tr>
                   <th scope="row">
                     <div class="media text-muted pt-3">
                       <img class="mr-3" src="{{asset('images/user.png')}}" alt="" width="40" height="40">
                       <p class="media-body pb-3 mb-0 small lh-125">
-                        <a href="{{route('post')}}">Link to post</a>
+                        <a href="{{route('post',['id'=>$post->id])}}">{{$post->title}}</a>
                       </p>
                     </div>
                   </th>
-                  <th><p class="pb-3 mb-0 small lh-125">142</p></th>
-                  <th><p class="pb-3 mb-0 small lh-125">14242</p></th>
-                  <th><p class="pb-3 mb-0 small lh-125">11/12/99 12:32</p></th>
+                  <th><p class="pb-3 mb-0 small lh-125">{{$post->comments->count()}}</p></th>
+                  <th><p class="pb-3 mb-0 small lh-125">{{$post->views}}</p></th>
+                  <th><p class="pb-3 mb-0 small lh-125">{{$post->created_at}}</p></th>
                   <th>
                     <a href=""><img src="{{asset('images/delete2.png')}}" alt="" width="45" height="45"></a>
                     <a href=""><img src="{{asset('images/delete3.png')}}" alt="" width="45" height="45"></a>
                   </th>
                 </tr>
               </tbody>
-            <?php endfor; ?>
+            @endforeach
             </table>
             <img src="{{asset('images/plus.png')}}" alt="" height="20" width="20">
             <a href="{{route('newPost')}}">Add post</a>
             <div class="d-flex justify-content-center">
-              <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                  <li class="page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">2</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                </ul>
-              </nav>
+              {{$posts->links()}}
           </div>
         </div>
       </div>
