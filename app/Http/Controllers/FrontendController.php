@@ -10,6 +10,8 @@ class FrontendController extends Controller
 {
     public function __construct(FrontendRepositoryInterface $fR, FrontendGateway $fG)
     {
+        $this->middleware('auth')->only('newpost');
+
         $this->fR = $fR;
         $this->fG = $fG;
     }
@@ -27,12 +29,16 @@ class FrontendController extends Controller
         return view('frontend.index',compact('categories','posts'));
     }
 
-    public function newPost(){
-        return view('frontend.newPost');
+    public function newpost(){
+        $categories = $this->fR->getCategories();
+
+        return view('frontend.newPost',['categories'=>$categories]);
     }
 
     public function post($id){
         $post = $this->fR->getPostById($id);
+
+        $this->fR->incrementViews($post);
 
         return view('frontend.post',['post'=>$post]);
     }
@@ -41,5 +47,11 @@ class FrontendController extends Controller
         $user = $this->fR->getUserById($id);
 
         return view('frontend.user',['user'=>$user]);
+    }
+
+    public function addpost(Request $request){
+        $this->fG->addpost($request);
+
+        return redirect()->back();
     }
 }

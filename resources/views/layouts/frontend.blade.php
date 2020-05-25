@@ -29,21 +29,39 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('home')}}">Home <span class="sr-only">(current)</span></a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('login')}}">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{route('register')}}">Register</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
-          </li>
+          @auth
+            <li class="nav-item">
+              <a class="nav-link" href="#">Dashboard</a>
+            </li>
+            <li>
+              <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </li>
+          @else
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('login')}}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{route('register')}}">Register</a>
+            </li>
+          @endauth
           <li>
             <div class="v-line"></div>
           </li>
+          @auth
           <li class="nav-item d-sm-none d-md-block">
+            <span class="navbar-text">Hello {{Auth::user()->name}}</span>
+          </li>
+          @else
+<li class="nav-item d-sm-none d-md-block">
             <span class="navbar-text">Hello John Doe</span>
           </li>
+          @endauth
+          
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

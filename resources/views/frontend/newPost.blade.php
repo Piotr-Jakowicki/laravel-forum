@@ -4,6 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+            
                 <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
                     <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="48" height="48">
                     <div class="lh-100">
@@ -14,17 +15,22 @@
                         Forum \ Categories \ Posts \ (New \ Edit)
                     </div>
                 </div>
-                <form>
+                <form action="{{route('addpost')}}" method="POST">
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" id="title" placeholder="Add title">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Add title" value="{{old('title')}}">
                     </div>
                     <div class="form-group">
                         <label for="category">Category</label>
-                        <select class="form-control" id="category">
-                            <option>PHP</option>
-                            <option>Java</option>
-                            <option>Python</option>
+                        <select class="form-control" id="category" name="category">
+                            @foreach($categories as $category)
+                                @if(old('category') == $category))
+                                    <option selected value="{{$category->id}}">{{$category->name}}</option>
+                                @else
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endif
+                                
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -40,17 +46,14 @@
                     </div>
                     <div class="form-group">
                         <label for="content">Content</label>
-                        <textarea class="form-control" id="content" rows="10"></textarea>
+                        <textarea class="form-control" id="content" name="description" rows="10">{{old('description')}}</textarea>
                     </div>
                     <div class="custom-file mb-4">
                         <input type="file" class="custom-file-input" id="main-image">
-                        <label class="custom-file-label" for="main-image">Main image (Only one)</label>
+                        <label class="custom-file-label" for="main-image" name="main-image">Main image (Only one)</label>
                     </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="main-image" multiple>
-                        <label class="custom-file-label" for="main-image">Other images</label>
-                    </div>
-                    <button class="btn btn-primary mt-4">Create</button>
+                    <button type="submit" class="btn btn-primary mt-4">Create</button>
+                    {{@csrf_field()}}
                 </form>
             </div>
         </div>

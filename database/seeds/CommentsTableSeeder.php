@@ -19,7 +19,7 @@ class CommentsTableSeeder extends Seeder
                 'commentable_type'=>$faker->randomElement(['App\Post']),
                 'commentable_id'=>$faker->numberBetween(1,100),
                 'user_id'=>$faker->numberBetween(1,10),
-                'created_at'=>$faker->date('Y-m-d H:i:s'),
+                'created_at'=>$faker->date('Y-m-d'),
             ]);
         }
     }

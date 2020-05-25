@@ -59,8 +59,10 @@
               </tbody>
             @endforeach
             </table>
-            <img src="{{asset('images/plus.png')}}" alt="" height="20" width="20">
-            <a href="{{route('newPost')}}">Add post</a>
+            @auth
+              <img src="{{asset('images/plus.png')}}" alt="" height="20" width="20">
+              <a href="{{route('newpost')}}">Add post</a>
+            @endauth
             <div class="d-flex justify-content-center">
               {{$posts->links()}}
           </div>

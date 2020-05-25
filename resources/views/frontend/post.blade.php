@@ -15,9 +15,9 @@
                 </div>
             </div>
             <h1 class="mt-4">{{$post->title}}</h1>
-            <p class="lead">by <a href="{{route('user')}}">{{$post->user->name}}  {{$post->user->surname}}</a></p>
+            <p class="lead">by <a href="{{route('user',['id'=>$post->id])}}">{{$post->user->name}}  {{$post->user->surname}}</a></p>
             <hr>
-            <p>Posted on January {{$post->created_at}}</p>
+            <p>Posted on {{$post->created_at}}</p>
             <hr>
             <!-- TO DO IMG -->
             <img class="img-fluid rounded w-100" src="{{asset('images\post-pic2.jpg')}}" alt="">

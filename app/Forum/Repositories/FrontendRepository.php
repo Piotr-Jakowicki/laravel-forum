@@ -29,4 +29,22 @@ class FrontendRepository implements FrontendRepositoryInterface{
     public function getUserById($id){
         return User::find($id);
     }
+
+    public function incrementViews(Post $post){
+        $post->views++;
+        $post->save();
+
+        return $post;
+    }
+
+    public function addpost($request){
+        return Post::create([
+            'title'=>$request->input('title'),
+            'content'=>$request->input('description'),
+            'views'=>0,
+            'user_id'=>$request->user()->id,
+            'category_id'=>$request->input('category'),
+            'created_at'=>date("Y-m-d H:i:s"),
+        ]);
+    }
 }
