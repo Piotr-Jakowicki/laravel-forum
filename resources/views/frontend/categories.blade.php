@@ -7,24 +7,29 @@
         <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
             <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="48" height="48">
             <div class="lh-100">
+              @if(!isset($request))
                 <h6 class="mb-0 lh-100">Category</h6>
-                <small>PHP</small>
+              @else
+                <h6 class="mb-0 lh-100">Search</h6>
+              @endif
+              <small>{{$posts->first()->category->name}}</small>
             </div>
             <div class="ml-5">
               Forum \ Categoris \ Posts
             </div>
           </div>
           <h1>Search</h1>
-          <form>
+          <form action="{{route('search')}}" method="GET">
             <div class="form-row">
               <div class="col">
-                <input type="text" class="form-control" placeholder="Tile">
+                <input type="text" class="form-control" name="title" placeholder="Tile" value="{{old('title')}}">
               </div>
               <div class="col">
                 <input type="text" class="form-control" placeholder="User">
               </div>
               <button type="submit" class="btn btn-primary">Search</button>
             </div>
+            <input type="hidden" name="category_id" value="{{$posts->first()->category->id}}">
           </form>
         <div class="my-3 p-3 bg-white rounded shadow-sm">
           <table class="table">
@@ -64,7 +69,7 @@
               <a href="{{route('newpost')}}">Add post</a>
             @endauth
             <div class="d-flex justify-content-center">
-              {{$posts->links()}}
+                {{$posts->links()}}
           </div>
         </div>
       </div>

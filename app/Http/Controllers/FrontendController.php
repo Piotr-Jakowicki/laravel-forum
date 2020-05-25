@@ -23,6 +23,12 @@ class FrontendController extends Controller
         return view('frontend.categories',['posts'=>$posts]);
     }
 
+    public function search(Request $request){
+        $posts = $this->fR->searchPostsByCategory($request);
+
+        return view('frontend.categories',compact('posts','request'));
+    }
+
     public function index(){
         $categories  = $this->fR->getCategories();
         $posts = $this->fR->getPostsForFrontPage();
