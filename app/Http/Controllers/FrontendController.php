@@ -68,8 +68,8 @@ class FrontendController extends Controller
         return redirect()->route('post',[$post->id]);
     }
 
-    public function addcomment(Request $request){
-        $this->fG->addcomment($request);
+    public function addcomment($commentable_id, $type, Request $request){
+        $this->fG->addcomment($commentable_id, $type, $request);
 
         return redirect()->back();
     }

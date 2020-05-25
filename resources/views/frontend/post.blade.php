@@ -15,12 +15,12 @@
                 </div>
             </div>
             <h1 class="mt-4">{{$post->title}}</h1>
-            <p class="lead">by <a href="{{route('user',['id'=>$post->id])}}">{{$post->user->name}}  {{$post->user->surname}}</a></p>
+            <p class="lead">by <a href="{{route('user',['id'=>$post->user->id])}}">{{$post->user->name}}  {{$post->user->surname}}</a></p>
             <hr>
             <p>Posted on {{$post->created_at}}</p>
             <hr>
             <!-- TO DO IMG -->
-            <img class="img-fluid rounded" src="{{asset($post->photos->first()->path)}}" alt="">
+            <img class="img-fluid rounded" src="{{asset($post->photos->first()->path ?? '')}}" alt="">
             <hr>
 
             {{$post->content}}
@@ -64,9 +64,9 @@
             <div class="card my-4">
               <h5 class="card-header">Leave a Comment:</h5>
               <div class="card-body">
-                <form action="{{route('addcomment')}}" method="POST">
+                <form action="{{route('addcomment',['commentable_id'=>$post->id,'Post'])}}" method="POST">
                   <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
+                    <textarea class="form-control" rows="3" name="content"></textarea>
                   </div>
                   @auth
                     <button type="submit" class="btn btn-primary">Submit</button>

@@ -2,7 +2,7 @@
 
 namespace App\Forum\Repositories;
 
-use App\{Category,Post,User,Photo};
+use App\{Category,Post,User,Photo,Comment};
 use App\Forum\Interfaces\FrontendRepositoryInterface;
 
 class FrontendRepository implements FrontendRepositoryInterface{
@@ -63,5 +63,15 @@ class FrontendRepository implements FrontendRepositoryInterface{
         $photo = new Photo;
         $photo->path = $path;
         return $post->photos()->save($photo);
+    }
+
+    public function addcomment($commentable_id, $type, $request){
+        return Comment::create([
+            'content'=>$request->input('content'),
+            'commentable_type'=>'App\\'.$type,
+            'user_id'=>$request->user()->id,
+            'commentable_id'=>$commentable_id,
+            'created_at'=>new \DateTime(),
+        ]);
     }
 }

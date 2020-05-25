@@ -22,4 +22,12 @@ class FrontendGateway{
 
         return $this->fR->addpost($request);
     }
+
+    public function addcomment($commentable_id, $type, $request){
+        $this->validate($request,[
+            'content' => 'required|string|min:10',
+        ]);
+
+        return $this->fR->addcomment($commentable_id, $type, $request);
+    }
 }

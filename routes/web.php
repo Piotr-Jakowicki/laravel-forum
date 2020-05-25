@@ -26,7 +26,7 @@ Route::get('/user/{id}','FrontendController@user')->name('user');
 Route::get('/search/{page?}','FrontendController@search')->name('search');
 
 Route::post('/addpost','FrontendController@addpost')->name('addpost');
-Route::post('/addcomment','FrontendController@addcomment')->name('addcomment');
+Route::post('/addcomment/{commentable_id}/{type}','FrontendController@addcomment')->name('addcomment');
 
 
 Auth::routes();
