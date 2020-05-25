@@ -21,4 +21,8 @@ class FrontendRepository implements FrontendRepositoryInterface{
     public function getPosts($id){
         return Post::with(['comments'])->where('category_id',$id)->paginate(8);
     }
+
+    public function getPostById($id){
+        return Post::find($id);
+    }
 }

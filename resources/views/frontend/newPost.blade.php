@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
-                    <img class="mr-3" src="..\\69045.png" alt="" width="48" height="48">
+                    <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="48" height="48">
                     <div class="lh-100">
                         <h6 class="mb-0 lh-100">Post</h6>
                         <small>New \ Edit</small>

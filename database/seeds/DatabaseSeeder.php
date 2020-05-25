@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PhotosTableSeeder::class,
             RolesTableSeeder::class,
             RoleUserTableSeeder::class,
+            DislikeablesTableSeeder::class,
         ]);
     }
 }

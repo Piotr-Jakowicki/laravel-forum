@@ -17,7 +17,7 @@ class CommentsTableSeeder extends Seeder
             DB::table('comments')->insert([
                 'content'=>$faker->text(100),
                 'commentable_type'=>$faker->randomElement(['App\Post']),
-                'commentable_id'=>$faker->numberBetween(1,10),
+                'commentable_id'=>$faker->numberBetween(1,100),
                 'user_id'=>$faker->numberBetween(1,10),
                 'created_at'=>$faker->date('Y-m-d H:i:s'),
             ]);

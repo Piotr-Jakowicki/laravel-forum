@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class LikeablesTableSeeder extends Seeder
+class DislikeablesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,9 @@ class LikeablesTableSeeder extends Seeder
         $faker = Faker\Factory::create('pl_PL');
 
         for($i=0;$i<500;$i++){
-            DB::table('likeables')->insert([
-                'likeable_type'=>$faker->randomElement(['App\Post','App\Comment']),
-                'likeable_id'=>$faker->numberBetween(1,100),
+            DB::table('dislikeables')->insert([
+                'dislikeable_type'=>$faker->randomElement(['App\Post','App\Comment']),
+                'dislikeable_id'=>$faker->numberBetween(1,100),
                 'user_id'=>$faker->numberBetween(1,10),
             ]);
         }
