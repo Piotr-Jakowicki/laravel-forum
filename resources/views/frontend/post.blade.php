@@ -76,7 +76,7 @@
               <div class="media mb-2">
                 <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
                 <div class="media-body">
-                    <h5 class="mt-0"> <a href="{{route('user')}}">{{$comment->user->name}}</a> </h5>
+                    <h5 class="mt-0"> <a href="{{route('user',['id'=>$comment->user->id])}}">{{$comment->user->name}}</a> </h5>
                     <p>{{$comment->created_at}}</p>
                     <br>
                     {{$comment->content}}

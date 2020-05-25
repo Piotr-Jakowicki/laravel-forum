@@ -37,7 +37,9 @@ class FrontendController extends Controller
         return view('frontend.post',['post'=>$post]);
     }
 
-    public function user(){
-        return view('frontend.user');
+    public function user($id){
+        $user = $this->fR->getUserById($id);
+
+        return view('frontend.user',['user'=>$user]);
     }
 }

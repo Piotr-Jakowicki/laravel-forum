@@ -2,7 +2,7 @@
 
 namespace App\Forum\Repositories;
 
-use App\{Category,Post};
+use App\{Category,Post,User};
 use App\Forum\Interfaces\FrontendRepositoryInterface;
 
 class FrontendRepository implements FrontendRepositoryInterface{
@@ -24,5 +24,9 @@ class FrontendRepository implements FrontendRepositoryInterface{
 
     public function getPostById($id){
         return Post::find($id);
+    }
+
+    public function getUserById($id){
+        return User::find($id);
     }
 }

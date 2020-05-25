@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
                 'name'=>$faker->firstName,
                 'surname'=>$faker->lastName,
                 'email'=>$faker->email,
+                'description'=>$faker->text(1000),
                 'password'=>bcrypt('password'),
                 'created_at'=>$faker->date('Y-m-d', 'now'),
                 'ban'=>0,
