@@ -2,7 +2,7 @@
 
 namespace App\Forum\Repositories;
 
-use App\{Category,Post,User};
+use App\{Category,Post,User,Photo};
 use App\Forum\Interfaces\FrontendRepositoryInterface;
 
 class FrontendRepository implements FrontendRepositoryInterface{
@@ -44,7 +44,13 @@ class FrontendRepository implements FrontendRepositoryInterface{
             'views'=>0,
             'user_id'=>$request->user()->id,
             'category_id'=>$request->input('category'),
-            'created_at'=>date("Y-m-d H:i:s"),
+            'created_at'=>new \DateTime(),
         ]);
+    }
+
+    public function createPostPhoto(Post $post,$path){
+        $photo = new Photo;
+        $photo->path = $path;
+        return $post->photos()->save($photo);
     }
 }

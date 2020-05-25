@@ -19,9 +19,9 @@
     </div>
     <button class="btn btn-primary mt-4">Create</button>
     <h3>Add photos</h3>
-    <div class="custom-file">
-        <input type="file" class="custom-file-input" id="main-image" multiple>
-        <label class="custom-file-label" for="main-image">Photos</label>
+    <div class="form-group">
+        <input type="file" id="main-image" multiple>
+        <label for="main-image">Photos</label>
     </div>
 </form>
 <div class="col">

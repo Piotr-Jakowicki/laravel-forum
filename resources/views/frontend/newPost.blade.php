@@ -15,7 +15,18 @@
                         Forum \ Categories \ Posts \ (New \ Edit)
                     </div>
                 </div>
-                <form action="{{route('addpost')}}" method="POST">
+                @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>
+                                        {{$error}}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                <form action="{{route('addpost')}}" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" name="title" placeholder="Add title" value="{{old('title')}}">
@@ -48,9 +59,9 @@
                         <label for="content">Content</label>
                         <textarea class="form-control" id="content" name="description" rows="10">{{old('description')}}</textarea>
                     </div>
-                    <div class="custom-file mb-4">
-                        <input type="file" class="custom-file-input" id="main-image">
-                        <label class="custom-file-label" for="main-image" name="main-image">Main image (Only one)</label>
+                    <div class="form-group">
+                        <label for="main-image">Photos</label>
+                        <input type="file" name="main-image" id="main-image">
                     </div>
                     <button type="submit" class="btn btn-primary mt-4">Create</button>
                     {{@csrf_field()}}

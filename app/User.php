@@ -62,4 +62,8 @@ class User extends Authenticatable
     public function comment_d(){
         return $this->morphToMany('App\Comment','dislikeable');
     }
+
+    public function photos(){
+        return $this->morphMany('App\Photo','photoable');
+    }
 }

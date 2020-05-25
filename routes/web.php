@@ -25,6 +25,7 @@ Route::get('/newpost','FrontendController@newpost')->name('newpost');
 Route::get('/user/{id}','FrontendController@user')->name('user');
 
 Route::post('/addpost','FrontendController@addpost')->name('addpost');
+Route::post('/addcomment','FrontendController@addcomment')->name('addcomment');
 
 
 Auth::routes();

@@ -27,4 +27,8 @@ class Post extends Model
     public function users_d(){
         return $this->morphToMany('App\User','dislikeable');
     }
+
+    public function photos(){
+        return $this->morphMany('App\Photo','photoable');
+    }
 }

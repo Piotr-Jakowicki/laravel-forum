@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Forum\Gateways\FrontendGateway;
 use App\Forum\Interfaces\FrontendRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class FrontendController extends Controller
 {
@@ -50,7 +51,19 @@ class FrontendController extends Controller
     }
 
     public function addpost(Request $request){
-        $this->fG->addpost($request);
+        $post = $this->fG->addpost($request);
+
+        if($request->hasFile('main-image')){
+            $path = $request->file('main-image')->store('posts','public');
+
+            $this->fR->createPostPhoto($post,$path);
+        }
+
+        return redirect()->route('post',[$post->id]);
+    }
+
+    public function addcomment(Request $request){
+        $this->fG->addcomment($request);
 
         return redirect()->back();
     }

@@ -20,7 +20,7 @@
             <p>Posted on {{$post->created_at}}</p>
             <hr>
             <!-- TO DO IMG -->
-            <img class="img-fluid rounded w-100" src="{{asset('images\post-pic2.jpg')}}" alt="">
+            <img class="img-fluid rounded" src="{{asset($post->photos->first()->path)}}" alt="">
             <hr>
 
             {{$post->content}}
@@ -64,11 +64,16 @@
             <div class="card my-4">
               <h5 class="card-header">Leave a Comment:</h5>
               <div class="card-body">
-                <form>
+                <form action="{{route('addcomment')}}" method="POST">
                   <div class="form-group">
                     <textarea class="form-control" rows="3"></textarea>
                   </div>
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  @auth
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  @else 
+                    <a href="{{route('login')}}" class="btn btn-primary">Login</a>
+                  @endauth
+                  {{csrf_field()}}
                 </form>
               </div>
             </div>
