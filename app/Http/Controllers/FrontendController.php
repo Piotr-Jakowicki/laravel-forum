@@ -11,7 +11,7 @@ class FrontendController extends Controller
 {
     public function __construct(FrontendRepositoryInterface $fR, FrontendGateway $fG)
     {
-        $this->middleware('auth')->only('newpost');
+        $this->middleware('auth')->only('newpost','like','unlike','addcomment');
 
         $this->fR = $fR;
         $this->fG = $fG;
@@ -71,6 +71,18 @@ class FrontendController extends Controller
     public function addcomment($commentable_id, $type, Request $request){
         $this->fG->addcomment($commentable_id, $type, $request);
 
+        return redirect()->back();
+    }
+
+    public function like($likeabl_id, $type,Request $request){
+        $this->fR->like($likeabl_id, $type,$request);
+        
+        return redirect()->back();
+    }
+
+    public function unlike($likeabl_id, $type,Request $request){
+        $this->fR->unlike($likeabl_id, $type,$request);
+        
         return redirect()->back();
     }
 }

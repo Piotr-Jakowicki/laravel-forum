@@ -50,17 +50,30 @@
             <hr>
             <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
               <div class="btn-group" role="group" aria-label="First group">
-                <button type="button" class="btn btn-secondary">Like</button>
-                <button type="button" class="btn btn-secondary">Dislike</button>
+                @if($post->isLiked())
+                <a href="{{route('unlike',['likeable_id'=>$post->id,'Post'])}}" class="btn btn-secondary">Unlike</a>
+                @else
+                <a href="{{route('like',['likeable_id'=>$post->id,'Post'])}}" class="btn btn-secondary">Like</a>
+                @endif
               </div>
               <div class="btn-group" role="group" aria-label="First group">
-                <p class="mr-2">Likes: {{$post->users_l->count()}}</p> 
-                <p>Dislikes: {{$post->users_d->count()}}</p> 
+                <p class="mr-2">Likes: {{$post->users->count()}}</p>  
               </div>
             </div>
             <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
                 <h3>Comments</h3>
             </div>
+            @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>
+                                        {{$error}}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
             <div class="card my-4">
               <h5 class="card-header">Leave a Comment:</h5>
               <div class="card-body">
@@ -89,26 +102,17 @@
               </div>
               <div class="btn-toolbar justify-content-between mb-5" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group" role="group" aria-label="First group">
-                  <button type="button" class="btn btn-secondary">Like</button>
-                  <button type="button" class="btn btn-secondary">Dislike</button>
+                  @if($comment->isLiked())
+                    <a href="{{route('unlike',['likeable_id'=>$comment->id,'Comment'])}}" class="btn btn-secondary">Unlike</a>
+                  @else
+                    <a href="{{route('like',['likeable_id'=>$comment->id,'Comment'])}}" class="btn btn-secondary">Like</a>
+                  @endif
                 </div>
                 <div class="btn-group" role="group" aria-label="First group">
-                  <p class="mr-2">Likes: {{$comment->users_l->count()}}</p> 
-                  <p>Disikes: {{$comment->users_d->count()}}</p> 
+                  <p class="mr-2">Likes: {{$comment->users->count()}}</p> 
                 </div>
               </div>
               @endforeach
-                <div class="d-flex justify-content-center">
-                  <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                      <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                      <li class="page-item"><a class="page-link" href="#">1</a></li>
-                      <li class="page-item"><a class="page-link" href="#">2</a></li>
-                      <li class="page-item"><a class="page-link" href="#">3</a></li>
-                      <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                  </nav>
-              </div>
         </div>
     </div>
   </div>

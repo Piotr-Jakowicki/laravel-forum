@@ -74,4 +74,18 @@ class FrontendRepository implements FrontendRepositoryInterface{
             'created_at'=>new \DateTime(),
         ]);
     }
+
+    public function like($likeabl_id, $type,$request){
+        $type = 'App\\'.$type;
+        $likeable = $type::find($likeabl_id);
+
+        return $likeable->users()->attach($request->user()->id);
+    }
+
+    public function unlike($likeabl_id, $type,$request){
+        $type = 'App\\'.$type;
+        $likeable = $type::find($likeabl_id);
+
+        return $likeable->users()->detach($request->user()->id);
+    }
 }

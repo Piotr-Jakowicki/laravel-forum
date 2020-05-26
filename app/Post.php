@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Post extends Model
 {
@@ -20,15 +21,15 @@ class Post extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function users_l(){
+    public function users(){
         return $this->morphToMany('App\User','likeable');
-    }
-
-    public function users_d(){
-        return $this->morphToMany('App\User','dislikeable');
     }
 
     public function photos(){
         return $this->morphMany('App\Photo','photoable');
+    }
+
+    public function isLiked(){
+        return $this->users()->where('user_id',Auth::user()->id)->exists();
     }
 }

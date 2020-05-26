@@ -24,6 +24,8 @@ Route::get('/post/{id}','FrontendController@post')->name('post');
 Route::get('/newpost','FrontendController@newpost')->name('newpost');
 Route::get('/user/{id}','FrontendController@user')->name('user');
 Route::get('/search/{page?}','FrontendController@search')->name('search');
+Route::get('/like/{likeable_id}/{type}','FrontendController@like')->name('like');
+Route::get('/unlike/{likeable_id}/{type}','FrontendController@unlike')->name('unlike');
 
 Route::post('/addpost','FrontendController@addpost')->name('addpost');
 Route::post('/addcomment/{commentable_id}/{type}','FrontendController@addcomment')->name('addcomment');
