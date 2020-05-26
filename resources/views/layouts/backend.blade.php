@@ -34,7 +34,7 @@
         <ul class="navbar-nav ml-auto">
         
             <li class="nav-item">
-                <a class="nav-link" href="..\backend\profile.blade.php">Profile</a>
+                <a class="nav-link" href="{{route('profile')}}">Profile</a>
             </li>
             
         </ul>
@@ -44,19 +44,19 @@
     <div class="col-md-2 sidebar">
         <ul class="nav nav-sidebar d-md-block">
             <li>
-                <a href="..\layouts\backend.blade.php">My posts</a>
+                <a href="{{route('dashboard')}}">My posts</a>
             </li>
             <li>
-                <a href="..\backend\settings.blade.php">Settings</a>
+                <a href="{{route('settings')}}">Settings</a>
             </li>
             <li>
-                <a href="..\backend\categories.blade.php">Categories</a>
+                <a href="{{route('categories')}}">Categories</a>
             </li>
             <li>
-                <a href="..\backend\tags.blade.php">Tags</a>
+                <a href="{{route('tags')}}">Tags</a>
             </li>
             <li>
-                <a href="..\backend\banned.blade.php">Banned users</a>
+                <a href="{{route('banned')}}">Banned users</a>
             </li>
         </ul>
     </div>

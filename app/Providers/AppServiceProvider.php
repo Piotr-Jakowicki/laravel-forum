@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Forum\Interfaces\FrontendRepositoryInterface;
 use App\Forum\Repositories\FrontendRepository;
+use App\Forum\Interfaces\BackendRepositoryInterface;
+use App\Forum\Repositories\BackendRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(FrontendRepositoryInterface::class,function(){
             return new FrontendRepository;
+        });
+
+        $this->app->bind(BackendRepositoryInterface::class,function(){
+            return new BackendRepository;
         });
     }
 

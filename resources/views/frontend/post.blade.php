@@ -18,11 +18,13 @@
             <p class="lead">by <a href="{{route('user',['id'=>$post->user->id])}}">{{$post->user->name}}  {{$post->user->surname}}</a></p>
             <hr>
             <p>Posted on {{$post->created_at}}</p>
+            
             <hr>
             <!-- TO DO IMG -->
-            <img class="img-fluid rounded" src="{{asset($post->photos->first()->path ?? '')}}" alt="">
+            @isset($post->photos->first()->path)
+            <img class="img-fluid rounded w-100" src="{{asset($post->photos->first()->path)}}" alt="">
             <hr>
-
+            @endisset
             {{$post->content}}
 
             <hr>

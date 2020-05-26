@@ -32,7 +32,7 @@
                                 <div class="media text-muted pt-3">
                                 <img class="mr-3" src="{{asset('images/69045.png')}}" alt="" width="20" height="20">
                                 <p class="media-body pb-3 mb-0 small lh-125">
-                                    <a href="{{route('categories',['id'=>$category->id])}}">{{$category->name}}</a>
+                                    <a href="{{route('posts',['id'=>$category->id])}}">{{$category->name}}</a>
                                     <br>
                                     {{$category->description}}
                                 </p>

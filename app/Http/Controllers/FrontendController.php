@@ -17,14 +17,19 @@ class FrontendController extends Controller
         $this->fG = $fG;
     }
 
-    public function categories($id){
+    public function posts($id){
         $posts = $this->fR->getPosts($id);
 
         return view('frontend.categories',['posts'=>$posts]);
     }
 
     public function search(Request $request){
-        $posts = $this->fR->searchPostsByCategory($request);
+        if($request->input('category_id')!= null ){
+            $posts = $this->fR->searchPostsByCategory($request);
+        } else {
+            $posts = $this->fR->searchPosts($request);
+        }
+        
 
         return view('frontend.categories',compact('posts','request'));
     }

@@ -31,7 +31,7 @@
           </li>
           @auth
             <li class="nav-item">
-              <a class="nav-link" href="#">Dashboard</a>
+              <a class="nav-link" href="{{route('dashboard')}}">Dashboard</a>
             </li>
             <li>
               <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -58,13 +58,13 @@
           </li>
           @else
 <li class="nav-item d-sm-none d-md-block">
-            <span class="navbar-text">Hello John Doe</span>
+            <span class="navbar-text">Hello Guest</span>
           </li>
           @endauth
           
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action="{{route('search')}}">
+          <input class="form-control mr-sm-2" type="text"name="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
         </form>
       </div>

@@ -12,25 +12,42 @@ class FrontendRepository implements FrontendRepositoryInterface{
     
     public function getPostsForFrontPage(){
         $posts['newest'] = Post::orderBy('created_at','desc')->take(10)->get();
-        $posts['popular'] = Post::orderBy('views','asc')->take(10)->get();
+        $posts['popular'] = Post::orderBy('views','desc')->take(10)->get();
         $posts['random'] = Post::inRandomOrder()->take(3)->get();
 
         return $posts;
     }
 
     public function getPosts($id){
-        return Post::with(['comments'])->where('category_id',$id)->paginate(8);
+        return Post::with(['comments'])->where('category_id',$id)->orderBy('created_at','desc')->paginate(8);
     }
 
     public function searchPostsByCategory($request){
-        $posts = Post::with(['comments'])->where('title','LIKE','%'.$request->input('title').'%')->where('category_id',$request->input('category_id'))->paginate(8);
+        $posts = Post::with(['comments'])
+            ->when($request->input('title'), function ($q) use ($request){
+                $q->where('title','LIKE','%'.$request->input('title').'%');
+            })
+            ->when($request->input('title'), function ($q) use ($request){
+                $q->where('category_id',$request->input('category_id'));
+            })
+            ->paginate(8);
 
-        $posts->appends([
+        return $posts->appends([
             'title' => $request->input('title'),
             'category_id' => $request->input('category_id'),
-        ]);
+        ]);;
+    }
 
-        return $posts;
+    public function searchPosts($request){
+        $posts = Post::with(['comments'])
+            ->when($request->input('search'), function ($q) use ($request){
+                $q->where('title','LIKE','%'.$request->input('search').'%');
+            })
+            ->paginate(8);
+
+        return $posts->appends([
+            'search' => $request->input('search'),
+        ]);
     }
 
     public function getPostById($id){

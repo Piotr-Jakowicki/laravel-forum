@@ -18,8 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/','FrontendController@index')->name('home');
-Route::get('/dashboard','FrontendController@dashboard')->name('dashboard');
-Route::get('/categories/{id}','FrontendController@categories')->name('categories');
+Route::get('/posts/{id}','FrontendController@posts')->name('posts');
 Route::get('/post/{id}','FrontendController@post')->name('post');
 Route::get('/newpost','FrontendController@newpost')->name('newpost');
 Route::get('/user/{id}','FrontendController@user')->name('user');
@@ -30,7 +29,13 @@ Route::get('/unlike/{likeable_id}/{type}','FrontendController@unlike')->name('un
 Route::post('/addpost','FrontendController@addpost')->name('addpost');
 Route::post('/addcomment/{commentable_id}/{type}','FrontendController@addcomment')->name('addcomment');
 
+Route::group(['prefix'=>'dashboard', 'middleware'=>'auth'], function(){
+    Route::get('/','BackendController@index')->name('dashboard');
+    Route::get('/settings','BackendController@settings')->name('settings');
+    Route::get('/categories','BackendController@categories')->name('categories');
+    Route::get('/tags','BackendController@tags')->name('tags');
+    Route::get('/banned','BackendController@banned')->name('banned');
+    Route::get('/profile','BackendController@profile')->name('profile');
+});
 
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
