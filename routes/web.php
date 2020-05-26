@@ -37,6 +37,7 @@ Route::group(['prefix'=>'dashboard', 'middleware'=>'auth'], function(){
     Route::get('/banned','BackendController@banned')->name('banned');
     Route::get('/profile','BackendController@profile')->name('profile');
     Route::resource('/categories','CategoryController');
+    Route::resource('/tags','TagController');
 });
 
 Auth::routes();

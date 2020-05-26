@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Forum\Gateways\BackendGateway;
 use App\Forum\Interfaces\BackendRepositoryInterface;
 
-class CategoryController extends Controller
+class TagController extends Controller
 {
     public function __construct(BackendGateway $bG, BackendRepositoryInterface $bR)
     {
@@ -22,7 +22,9 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('backend.categories.index',['categories'=>$this->bR->getCategories()]);
+        $tags = $this->bR->getTags();
+
+        return view('backend.tags.index',['tags'=>$tags]);
     }
 
     /**
@@ -32,7 +34,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.categories.create');
+        return view('backend.tags.create');
     }
 
     /**
@@ -43,9 +45,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $this->bG->createCategory($request);
+        $this->bG->createTag($request);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -67,9 +69,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = $this->bR->getCategoryById($id);
+        $tag = $this->bR->getTagById($id);
         
-        return view('backend.categories.edit',['category'=>$category]);
+        return view('backend.tags.edit',['tag'=>$tag]);
     }
 
     /**
@@ -81,9 +83,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->bG->updateCategory($request, $id);
+        $this->bG->updateTag($request, $id);
 
-        return redirect()->route('categories.index');
+        return redirect()->route('tags.index');
     }
 
     /**
@@ -94,7 +96,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $this->bR->deleteCategory($id);
+        $this->bR->deleteTag($id);
 
         return redirect()->back();
     }

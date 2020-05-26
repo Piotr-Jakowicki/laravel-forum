@@ -22,6 +22,15 @@ class BackendGateway{
         return $this->bR->createCategory($request); 
     }
 
+    public function createTag($request){
+        $this->validate($request,[
+            'name' => 'required|string|unique:tags',
+            'description' => 'required|string|min:10',
+        ]);
+
+        return $this->bR->createTag($request); 
+    }
+
     public function updateCategory($request, $id){
         $this->validate($request,[
             'name' => 'required|string|unique:categories',
@@ -29,5 +38,14 @@ class BackendGateway{
         ]);
 
         return $this->bR->updateCategory($request, $id); 
+    }
+
+    public function updateTag($request, $id){
+        $this->validate($request,[
+            'name' => 'required|string|unique:categories',
+            'description' => 'required|string|min:10',
+        ]);
+
+        return $this->bR->updateTag($request, $id); 
     }
 }
