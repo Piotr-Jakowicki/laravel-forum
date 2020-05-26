@@ -50,7 +50,7 @@
                 <a href="{{route('settings')}}">Settings</a>
             </li>
             <li>
-                <a href="{{route('categories')}}">Categories</a>
+                <a href="{{route('categories.index')}}">Categories</a>
             </li>
             <li>
                 <a href="{{route('tags')}}">Tags</a>
