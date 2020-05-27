@@ -14,8 +14,14 @@ class BackendController extends Controller
         $this->bG = $bG;
         $this->bR = $bR;
     }
-    public function index(){
-        $user = $this->bR->getUser(Auth::user()->id);
+    public function index(Request $request){
+        if($request->input('title') != null){
+            $user = $this->bR->searchUserPosts($request, Auth::user()->id);
+        } else {
+            $user = $this->bR->getUserPosts(Auth::user()->id);
+        }
+
+        
 
         return view('backend.index',['user'=>$user]);
     }
@@ -66,7 +72,6 @@ class BackendController extends Controller
     
     public function deletepost($id){
         $this->bR->deletePost($id);
-        $this->bR->deletePostTags($id);
 
         return redirect()->route('dashboard');
     }

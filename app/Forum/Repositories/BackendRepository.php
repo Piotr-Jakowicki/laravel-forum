@@ -64,12 +64,22 @@ class BackendRepository implements BackendRepositoryInterface{
         return Tag::where('id',$id)->delete();
     }
 
-    public function getUser($id){
+    public function getUserPosts($id){
         return User::with([
             'posts'=>function($q){
                 $q->orderBy('created_at','desc');
             }
         ])->find($id);
+    }
+
+    public function searchUserPosts($request, $id){
+        return User::with([
+            'posts'=>function($q) use ($request){
+                $q->where('title','LIKE','%'.$request->input('title').'%')
+                ->orderBy('created_at','desc');
+            }
+        ])
+        ->find($id);
     }
 
     public function updatePost($request, $id){
