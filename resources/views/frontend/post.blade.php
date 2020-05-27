@@ -30,24 +30,11 @@
             <hr>
 
             <div class="row">
+              @foreach($post->tags as $tag)
               <div class="col-md-2">
-                #TAG
+                #{{$tag->tag->name}}
               </div>
-              <div class="col-md-2">
-              #TAG
-              </div>
-              <div class="col-md-2">
-              #TAG
-              </div>
-              <div class="col-md-2">
-              #TAG
-              </div>
-              <div class="col-md-2">
-              #TAG
-              </div>
-              <div class="col-md-2">
-              #TAG
-              </div>
+              @endforeach
             </div>
             <hr>
             <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">

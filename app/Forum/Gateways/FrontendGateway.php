@@ -17,7 +17,6 @@ class FrontendGateway{
         $this->validate($request,[
             'title' => 'required|string|min:10',
             'description' => 'required|string|min:100',
-            'category'=>'required|integer'
         ]);
 
         return $this->fR->addpost($request);

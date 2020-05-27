@@ -2,12 +2,20 @@
 
 namespace App\Forum\Repositories;
 
-use App\{Category,Post,User,Photo,Comment};
+use App\{Category,Post,User,Photo,Comment,Tag,Post_tag};
 use App\Forum\Interfaces\FrontendRepositoryInterface;
 
 class FrontendRepository implements FrontendRepositoryInterface{
     public function getCategories(){
         return Category::with(['posts'])->paginate(8);
+    }
+
+    public function getCategoriesForNewPost(){
+        return Category::orderBy('name','asc')->get();
+    }
+
+    public function getTagsForNewPost(){
+        return Tag::orderBy('name','asc')->get();
     }
     
     public function getPostsForFrontPage(){
@@ -74,6 +82,19 @@ class FrontendRepository implements FrontendRepositoryInterface{
             'category_id'=>$request->input('category'),
             'created_at'=>new \DateTime(),
         ]);
+    }
+
+    public function addTags($request, $id){
+        $tags = [];
+        $tags2 = $request->input('tags');
+        foreach($tags2 as $tag){
+            $tags[] = [
+                'post_id'=>$id,
+                'tag_id'=>$tag,
+            ];
+        }
+
+        return Post_tag::insert($tags);
     }
 
     public function createPostPhoto(Post $post,$path){

@@ -46,13 +46,10 @@
                     </div>
                     <div class="form-group">
                         <label for="tags">Tags multiple select</label>
-                        <select multiple class="form-control" id="tags">
-                            <option>Validation</option>
-                            <option>Bug</option>
-                            <option>Validation</option>
-                            <option>Bug</option>
-                            <option>Validation</option>
-                            <option>Bug</option>
+                        <select multiple="multiple" class="form-control" id="tags" name="tags[]">
+                            @foreach($tags as $tag)
+                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">

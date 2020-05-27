@@ -32,4 +32,8 @@ class Post extends Model
     public function isLiked(){
         return $this->users()->where('user_id',Auth::user()->id)->exists();
     }
+    
+    public function tags(){
+        return $this->hasMany('App\Post_tag');
+    }
 }

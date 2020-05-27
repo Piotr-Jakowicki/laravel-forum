@@ -42,9 +42,10 @@ class FrontendController extends Controller
     }
 
     public function newpost(){
-        $categories = $this->fR->getCategories();
+        $categories = $this->fR->getCategoriesForNewPost();
+        $tags = $this->fR->getTagsForNewPost();
 
-        return view('frontend.newPost',['categories'=>$categories]);
+        return view('frontend.newPost',compact('categories','tags'));
     }
 
     public function post($id){
@@ -63,6 +64,7 @@ class FrontendController extends Controller
 
     public function addpost(Request $request){
         $post = $this->fG->addpost($request);
+        $this->fR->addTags($request, $post->id);
 
         if($request->hasFile('main-image')){
             $path = $request->file('main-image')->store('posts','public');
