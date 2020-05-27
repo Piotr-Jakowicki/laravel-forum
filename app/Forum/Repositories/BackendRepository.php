@@ -3,7 +3,7 @@
 namespace App\Forum\Repositories;
 
 use App\Forum\Interfaces\BackendRepositoryInterface;
-use App\{Category,Tag};
+use App\{Category,Tag,User,Post,Post_tag};
 
 class BackendRepository implements BackendRepositoryInterface{
     public function getCategories(){
@@ -12,6 +12,10 @@ class BackendRepository implements BackendRepositoryInterface{
 
     public function getTags(){
         return Tag::get();
+    }
+
+    public function getPost($id){
+        return Post::find($id);
     }
 
     public function createCategory($request){
@@ -58,5 +62,43 @@ class BackendRepository implements BackendRepositoryInterface{
 
     public function deleteTag($id){
         return Tag::where('id',$id)->delete();
+    }
+
+    public function getUser($id){
+        return User::with([
+            'posts'=>function($q){
+                $q->orderBy('created_at','desc');
+            }
+        ])->find($id);
+    }
+
+    public function updatePost($request, $id){
+        $post = Post::find($id);
+
+        $post->title = $request->input('title');
+        $post->content = $request->input('description');
+        $post->category_id = $request->input('category');
+        $post->save();
+    }
+
+    public function deletePostTags($id){
+        return Post_tag::where('post_id',$id)->delete();
+    }
+
+    public function deletePost($id){
+        return Post::find($id)->delete();
+    }
+
+    public function addPostTags($request, $id){
+        $tags = [];
+        $old_tags = $request->input('tags');
+        foreach($old_tags as $tag){
+            $tags[] = [
+                'post_id'=>$id,
+                'tag_id'=>$tag,
+            ];
+        }
+
+        return Post_tag::insert($tags);
     }
 }

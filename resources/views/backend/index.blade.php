@@ -16,18 +16,19 @@
             <button type="submit" class="btn btn-primary">Search</button>
     </div>
 </form>       
-<?php for($i=0;$i<7;$i++): ?>
+@foreach($user->posts as $post)
     <div class="media mb-2">
         <div class="media-body">
-            <h5 class="mt-0"> <a href="..\frontend\user.blade.php">Post title</a> </h5>
-            <p>11/12/99 12:50</p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda laborum reiciendis nam officia dolorem perferendis Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda laborum reiciendis nam officia dolorem perferendisLorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda laborum reiciendis nam officia dolorem perferendis
+            <h5 class="mt-0"> <a href="..\frontend\user.blade.php">{{$post->title}}</a> </h5>
+            <p>{{$post->created_at}}</p>
+            {{Str::limit($post->content,100)}}
         </div>
     </div>
     <div class="btn-group pb-5" role="group" aria-label="First group">
-        <button type="button" class="btn btn-secondary">Edit</button>
-        <button type="button" class="btn btn-secondary">Delete</button>
+        <a href="{{route('editpost',['id'=>$post->id])}}" class="btn btn-secondary">Edit</a>
+        <a href="{{route('deletepost',['id'=>$post->id])}}" class="btn btn-secondary">Delete</a>
+        
   </div>
-<?php endfor; ?>
+@endforeach
 @endsection
 

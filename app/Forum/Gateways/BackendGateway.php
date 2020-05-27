@@ -48,4 +48,13 @@ class BackendGateway{
 
         return $this->bR->updateTag($request, $id); 
     }
+
+    public function updatepost($request, $id){
+        $this->validate($request,[
+            'title' => 'required|string|min:10',
+            'description' => 'required|string|min:100',
+        ]);
+
+        return $this->bR->updatePost($request, $id);
+    }
 }

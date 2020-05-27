@@ -36,6 +36,9 @@ Route::group(['prefix'=>'dashboard', 'middleware'=>'auth'], function(){
     Route::get('/tags','BackendController@tags')->name('tags');
     Route::get('/banned','BackendController@banned')->name('banned');
     Route::get('/profile','BackendController@profile')->name('profile');
+    Route::get('/editpost/{id}','BackendController@editpost')->name('editpost');
+    Route::post('/updatepost/{id}','BackendController@updatepost')->name('updatepost');
+    Route::get('/deletepost/{id}','BackendController@deletepost')->name('deletepost');
     Route::resource('/categories','CategoryController');
     Route::resource('/tags','TagController');
 });
