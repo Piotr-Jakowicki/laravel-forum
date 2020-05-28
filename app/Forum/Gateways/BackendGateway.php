@@ -57,4 +57,26 @@ class BackendGateway{
 
         return $this->bR->updatePost($request, $id);
     }
+
+    public function updateUser($request, $id){
+        $this->validate($request,[
+            'name' => 'required|string|',
+            'surname' => 'required|string',
+            'description' => 'string',
+        ]);
+
+        $user = $this->bR->updateUser($request, $id);
+
+        if($request->hasFile('images')){
+            $this->validate($request, \App\Photo::imageRules($request,'images'));
+
+            foreach($request->file('images') as $picture){
+                $path = $picture->store('Users','public');
+
+                $this->bR->saveUserImage($user, $path);
+            }
+        }
+
+        return $user;
+    }
 }

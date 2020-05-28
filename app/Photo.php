@@ -15,4 +15,16 @@ class Photo extends Model
     public function getPathAttribute($value){
         return asset("storage/{$value}");
     }
+
+    public function getStoragePathAttribute(){
+        return $this->original['path'];
+    }
+
+    public static function imageRules($request, $type){
+        for($i=0; $i<=count($request->file($type)) -1 ;$i++){
+            $rules["$type.$i"] = 'image';
+        }
+
+        return $rules;
+    }
 }

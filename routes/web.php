@@ -38,7 +38,9 @@ Route::group(['prefix'=>'dashboard', 'middleware'=>'auth'], function(){
     Route::get('/profile','BackendController@profile')->name('profile');
     Route::get('/editpost/{id}','BackendController@editpost')->name('editpost');
     Route::post('/updatepost/{id}','BackendController@updatepost')->name('updatepost');
+    Route::post('/updateuser/{id}','BackendController@updateuser')->name('updateuser');
     Route::get('/deletepost/{id}','BackendController@deletepost')->name('deletepost');
+    Route::get('/deletephoto/{id}','BackendController@deletephoto')->name('deletephoto');
     Route::resource('/categories','CategoryController');
     Route::resource('/tags','TagController');
 });

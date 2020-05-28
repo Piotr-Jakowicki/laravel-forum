@@ -9,6 +9,4 @@ class Tag extends Model
     protected $guarded = [];
 
     public $timestamps = false;
-
-    
 }

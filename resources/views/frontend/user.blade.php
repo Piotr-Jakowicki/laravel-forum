@@ -23,12 +23,12 @@
         </div>
         <div class="col">
             <div class="row">
-                <?php for($i=0;$i<6;$i++): ?>
+                @foreach($user->photos as $photo)
                     <!-- TO DO IMAGES -->
                     <div class="col-md-2 mr-4 mb-4">
-                        <img class="img-fluid img-thumbnail" src="{{asset('images\user.png')}}" alt="">
+                        <img class="img-fluid img-thumbnail" src="{{$photo->path}}" alt="">
                     </div>
-                <?php endfor; ?>
+                @endforeach
             </div>
         </div>
         <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">

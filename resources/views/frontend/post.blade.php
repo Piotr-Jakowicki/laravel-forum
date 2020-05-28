@@ -81,7 +81,7 @@
             </div>
             @foreach($post->comments as $comment)
               <div class="media mb-2">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                <img class="d-flex mr-3 rounded" src="{{$post->user->photos->first()->path ?? asset('images/user.png')}}" alt="" with="26" height="26">
                 <div class="media-body">
                     <h5 class="mt-0"> <a href="{{route('user',['id'=>$comment->user->id])}}">{{$comment->user->name}}</a> </h5>
                     <p>{{$comment->created_at}}</p>

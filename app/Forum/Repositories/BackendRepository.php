@@ -3,7 +3,7 @@
 namespace App\Forum\Repositories;
 
 use App\Forum\Interfaces\BackendRepositoryInterface;
-use App\{Category,Tag,User,Post,Post_tag};
+use App\{Category,Tag,User,Post,Post_tag,Photo};
 
 class BackendRepository implements BackendRepositoryInterface{
     public function getCategories(){
@@ -16,6 +16,10 @@ class BackendRepository implements BackendRepositoryInterface{
 
     public function getPost($id){
         return Post::find($id);
+    }
+
+    public function getUser($id){
+        return User::find($id);
     }
 
     public function createCategory($request){
@@ -110,5 +114,32 @@ class BackendRepository implements BackendRepositoryInterface{
         }
 
         return Post_tag::insert($tags);
+    }
+
+    public function updateUser($request, $id){
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->surname = $request->input('surname');
+        $user->description = $request->input('description');
+        $user->save();
+
+        return $user;
+    }
+
+    public function saveUserImage($user, $path){
+        $photo = new Photo();
+        $photo->path = $path;
+        return $user->photos()->save($photo);
+    }
+
+    public function findPhoto($id){
+        return Photo::find($id);
+    }
+
+    public function deletePhoto(Photo $photo){
+        $path = $photo->storagepath;
+        $photo->delete();
+        return $path;
     }
 }

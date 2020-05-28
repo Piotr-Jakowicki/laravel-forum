@@ -47,7 +47,7 @@
                 <tr>
                   <th scope="row">
                     <div class="media text-muted pt-3">
-                      <img class="mr-3" src="{{asset('images/user.png')}}" alt="" width="40" height="40">
+                      <img class="mr-3 rounded-circle" src="{{$post->user->photos->first()->path ?? asset('images/user.png')}}" alt="" width="40" height="40" data-toggle="tooltip" title="{{$post->user->name}} {{$post->user->surname}}">
                       <p class="media-body pb-3 mb-0 small lh-125">
                         <a href="{{route('post',['id'=>$post->id])}}">{{$post->title}}</a>
                       </p>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Forum\Interfaces\BackendRepositoryInterface;
 use App\Forum\Gateways\BackendGateway;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class BackendController extends Controller
 {
@@ -20,9 +21,6 @@ class BackendController extends Controller
         } else {
             $user = $this->bR->getUserPosts(Auth::user()->id);
         }
-
-        
-
         return view('backend.index',['user'=>$user]);
     }
 
@@ -43,7 +41,7 @@ class BackendController extends Controller
     }
 
     public function profile(){
-        return view('backend.profile');
+        return view('backend.profile',['user'=>Auth::user()]);
     }
 
     public function editpost($id){
@@ -69,10 +67,26 @@ class BackendController extends Controller
         */
         return redirect()->route('dashboard');
     }
+
+    public function updateuser(Request $request, $id){
+        $this->bG->updateUser($request, $id);
+
+        return redirect()->back();
+    }
     
     public function deletepost($id){
         $this->bR->deletePost($id);
 
         return redirect()->route('dashboard');
+    }
+    
+    public function deletephoto($id){
+        $photo = $this->bR->findPhoto($id);
+
+        $path = $this->bR->deletePhoto($photo);
+
+        Storage::disk('public')->delete($path);
+
+        return redirect()->back();
     }
 }
