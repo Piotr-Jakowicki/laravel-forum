@@ -20,7 +20,6 @@
             <p>Posted on {{$post->created_at}}</p>
             
             <hr>
-            <!-- TO DO IMG -->
             @isset($post->photos->first()->path)
             <img class="img-fluid rounded w-100" src="{{asset($post->photos->first()->path)}}" alt="">
             <hr>
@@ -38,13 +37,20 @@
             </div>
             <hr>
             <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+              
               <div class="btn-group" role="group" aria-label="First group">
+              @auth
                 @if($post->isLiked())
                 <a href="{{route('unlike',['likeable_id'=>$post->id,'Post'])}}" class="btn btn-secondary">Unlike</a>
                 @else
                 <a href="{{route('like',['likeable_id'=>$post->id,'Post'])}}" class="btn btn-secondary">Like</a>
                 @endif
+                @endauth
+              @guest
+                <a href="{{route('like',['likeable_id'=>$post->id,'Post'])}}" class="btn btn-secondary">Log in to like</a>
+              @endguest
               </div>
+              
               <div class="btn-group" role="group" aria-label="First group">
                 <p class="mr-2">Likes: {{$post->users->count()}}</p>  
               </div>
@@ -91,16 +97,23 @@
               </div>
               <div class="btn-toolbar justify-content-between mb-5" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="btn-group" role="group" aria-label="First group">
-                  @if($comment->isLiked())
-                    <a href="{{route('unlike',['likeable_id'=>$comment->id,'Comment'])}}" class="btn btn-secondary">Unlike</a>
-                  @else
-                    <a href="{{route('like',['likeable_id'=>$comment->id,'Comment'])}}" class="btn btn-secondary">Like</a>
-                  @endif
-                </div>
-                <div class="btn-group" role="group" aria-label="First group">
-                  <p class="mr-2">Likes: {{$comment->users->count()}}</p> 
-                </div>
-              </div>
+                  @auth
+                    @if($comment->isLiked())
+                      <a href="{{route('unlike',['likeable_id'=>$comment->id,'Comment'])}}" class="btn btn-secondary">Unlike</a>
+                    @else
+                      <a href="{{route('like',['likeable_id'=>$comment->id,'Comment'])}}" class="btn btn-secondary">Like</a>
+                    @endif
+                    @endauth
+                  @guest
+                    <a href="{{route('like',['likeable_id'=>$comment->id,'Comment'])}}" class="btn btn-secondary">Log in to like</a>
+                  @endguest
+                    </div>
+                    <div class="btn-group" role="group" aria-label="First group">
+                      <p class="mr-2">Likes: {{$comment->users->count()}}</p> 
+                    </div>
+                    
+                  </div>
+                  
               @endforeach
         </div>
     </div>
