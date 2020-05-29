@@ -37,7 +37,9 @@ class BackendController extends Controller
     }
 
     public function banned(){
-        return view('backend.banned');
+        $banned = $this->bR->getBannedUsers();
+
+        return view('backend.banned',['banned'=>$banned]);
     }
 
     public function profile(){
@@ -76,6 +78,15 @@ class BackendController extends Controller
     
     public function deletepost($id){
         $this->bR->deletePost($id);
+
+        $photo = $this->bR->getPostPhoto($id);
+
+        if($photo !== null){
+            $path = $this->bR->deletePhoto($photo);
+
+            Storage::disk('public')->delete($path);
+        }
+        
 
         return redirect()->route('dashboard');
     }

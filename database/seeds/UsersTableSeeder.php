@@ -21,7 +21,6 @@ class UsersTableSeeder extends Seeder
                 'description'=>$faker->text(1000),
                 'password'=>bcrypt('password'),
                 'created_at'=>$faker->date('Y-m-d', 'now'),
-                'ban'=>0,
             ]);
         }
     }

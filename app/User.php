@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -11,6 +12,8 @@ class User extends Authenticatable
     use Notifiable;
 
     public $timestamp = false;
+
+    public static $roles = [];
 
     /**
      * The attributes that are mass assignable.
@@ -65,5 +68,28 @@ class User extends Authenticatable
 
     public function photos(){
         return $this->morphMany('App\Photo','photoable');
+    }
+
+    public function roles(){
+        return $this->belongsToMany('App\Role');
+    }
+
+    public function banned(){
+        return $this->belongsToMany('App\Role')->where('name','banned');
+    }
+
+    public function hasRole(array $roles){
+        foreach($roles as $role){
+            if(isset(self::$roles[$role])){
+                return true;
+            } else {
+                self::$roles[$role] = $this->roles()->where('name',$role)->exists();
+                if(self::$roles[$role]){
+                    return true;
+                }
+            }
+
+            return false;
+        }
     }
 }

@@ -142,4 +142,16 @@ class BackendRepository implements BackendRepositoryInterface{
         $photo->delete();
         return $path;
     }
+
+    public function getPostPhoto($id){
+        return Photo::where('photoable_id',$id)->first();
+    }
+
+    public function getBannedUsers(){
+        return User::with('roles')
+            ->whereHas('roles',function($q){
+                $q->where('name','banned');
+            })
+            ->get();
+    }
 }

@@ -13,9 +13,9 @@ class RolesTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create('pl_PL');
 
-        for($i=1; $i<=2; $i++){
+        for($i=1; $i<=3; $i++){
             DB::table('roles')->insert([
-                'name' => $faker->unique()->randomElement(['user','admin']),
+                'name' => $faker->unique()->randomElement(['user','admin','banned']),
             ]);
         }
     }
